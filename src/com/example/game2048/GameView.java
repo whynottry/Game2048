@@ -75,6 +75,7 @@ public class GameView extends GridLayout {
 		};
 	}
 	
+	//在AndroidMainfest固定之后，只执行一次
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		// TODO Auto-generated method stub
@@ -83,6 +84,17 @@ public class GameView extends GridLayout {
 		int cardWidth = (Math.min(w,h) - 10)/4;
 		
 		addCard(cardWidth,cardWidth);
+		startGame();
+	}
+	
+	private void startGame(){
+		for(int y = 0; y < 4; y++){
+			for(int x = 0; x < 4; x++){
+				cards[x][y].setNum(0);;
+			}
+		}
+		addRandomNum();
+		addRandomNum();
 	}
 	
 	private Card[][] cards = new Card[4][4];
@@ -103,10 +115,14 @@ public class GameView extends GridLayout {
 		emptyPoints.clear();
 		for(int y = 0; y < 4; y++){
 			for(int x = 0; x < 4; x++){
-				
+				if(cards[x][y].getNum() <= 0){
+					//说明空点，空点才可以添加数字
+					emptyPoints.add(new Point(x,y));
+				}
 			}
 		}
-		
+		Point p = emptyPoints.remove((int)(Math.random()*emptyPoints.size()));
+		cards[p.x][p.y].setNum(Math.random()>0.1?2:4);
 	}
 	private void swipeLeft(){
 		
