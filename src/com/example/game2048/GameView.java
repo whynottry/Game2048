@@ -93,6 +93,7 @@ public class GameView extends GridLayout {
 		for(int y = 0; y < 4; y++){
 			for(int x = 0; x < 4; x++){
 				cards[x][y].setNum(0);
+				cards[x][y].setCardBg();
 			}
 		}
 		MainActivity.getMainActivity().clearScore();
@@ -127,7 +128,9 @@ public class GameView extends GridLayout {
 			}
 		}
 		Point p = emptyPoints.remove((int)(Math.random()*emptyPoints.size()));
-		cards[p.x][p.y].setNum(Math.random()>0.1?2:4);
+		int cardNum = Math.random()>0.1?2:4;
+		cards[p.x][p.y].setNum(cardNum);
+		cards[p.x][p.y].setCardBg();
 	}
 	
 	private void swipeLeft(){
@@ -138,14 +141,18 @@ public class GameView extends GridLayout {
 					if(cards[x1][y].getNum() > 0){
 						if(cards[x][y].getNum() <= 0){
 							cards[x][y].setNum(cards[x1][y].getNum());
+							cards[x][y].setCardBg();
 							cards[x1][y].setNum(0);
+							cards[x1][y].setCardBg();
 							x--;
 							merge = true;
 							break;
 						}else if(cards[x][y].equal(cards[x1][y])){
 							//合并
 							cards[x][y].setNum(2*cards[x1][y].getNum());
+							cards[x][y].setCardBg();
 							cards[x1][y].setNum(0);
+							cards[x1][y].setCardBg();
 							
 							MainActivity.getMainActivity().addScore(cards[x][y].getNum());
 							merge = true;
@@ -169,14 +176,18 @@ public class GameView extends GridLayout {
 					if(cards[x1][y].getNum() > 0){
 						if(cards[x][y].getNum() <= 0){
 							cards[x][y].setNum(cards[x1][y].getNum());
+							cards[x][y].setCardBg();
 							cards[x1][y].setNum(0);
+							cards[x1][y].setCardBg();
 							x--;
 							merge = true;
 							break;
 						}else if(cards[x][y].equal(cards[x1][y])){
 							//合并
 							cards[x][y].setNum(2*cards[x1][y].getNum());
+							cards[x][y].setCardBg();
 							cards[x1][y].setNum(0);
+							cards[x1][y].setCardBg();
 							MainActivity.getMainActivity().addScore(cards[x][y].getNum());
 							merge = true;
 							break;
@@ -199,14 +210,18 @@ public class GameView extends GridLayout {
 					if(cards[x][y1].getNum() > 0){
 						if(cards[x][y].getNum() <= 0){
 							cards[x][y].setNum(cards[x][y1].getNum());
+							cards[x][y].setCardBg();
 							cards[x][y1].setNum(0);
+							cards[x][y1].setCardBg();
 							y--;
 							merge = true;
 							break;
 						}else if(cards[x][y].equal(cards[x][y1])){
 							//合并
 							cards[x][y].setNum(2*cards[x][y1].getNum());
+							cards[x][y].setCardBg();
 							cards[x][y1].setNum(0);
+							cards[x][y1].setCardBg();
 							MainActivity.getMainActivity().addScore(cards[x][y].getNum());
 							merge = true;
 							break;
@@ -229,14 +244,18 @@ public class GameView extends GridLayout {
 					if(cards[x][y1].getNum() > 0){
 						if(cards[x][y].getNum() <= 0){
 							cards[x][y].setNum(cards[x][y1].getNum());
+							cards[x][y].setCardBg();
 							cards[x][y1].setNum(0);
+							cards[x][y1].setCardBg();
 							y--;
 							merge = true;
 							break;
 						}else if(cards[x][y].equal(cards[x][y1])){
 							//合并
 							cards[x][y].setNum(2*cards[x][y1].getNum());
+							cards[x][y].setCardBg();
 							cards[x][y1].setNum(0);
+							cards[x][y1].setCardBg();
 							MainActivity.getMainActivity().addScore(cards[x][y].getNum());
 							merge = true;
 							break;
